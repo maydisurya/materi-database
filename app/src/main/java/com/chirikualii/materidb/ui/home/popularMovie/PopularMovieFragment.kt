@@ -39,6 +39,11 @@ class PopularMovieFragment : Fragment() {
         observeView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mViewModel.doGetPopularMovie()
+    }
+
     private fun observeView() {
         mViewModel.listMovie.observe(viewLifecycleOwner) {
             adapter.addItem(it)

@@ -44,6 +44,11 @@ class NowPlayingFragment : Fragment() {
         observeView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mViewModel.doGetNowPlayingMovie()
+    }
+
     private fun observeView() {
         mViewModel.listMovie.observe(viewLifecycleOwner) {
             adapter.addItem(it)

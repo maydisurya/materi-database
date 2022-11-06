@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.chirikualii.materidb.data.local.entity.MovieEntity
 import com.chirikualii.materidb.data.model.Movie
 
@@ -22,4 +23,10 @@ interface MovieDao {
     suspend fun getListMoviePopular(
         typeMovie: String
     ): List<MovieEntity>
+
+    @Update(entity = MovieEntity::class)
+    suspend fun  updateMovie(movieEntity: MovieEntity)
+
+    @Query("Update MOVIE set bookmark = :bookmark where movieId = :movieId")
+    suspend fun  updateMovieWithQuery(movieId: String, bookmark:Int)
 }
